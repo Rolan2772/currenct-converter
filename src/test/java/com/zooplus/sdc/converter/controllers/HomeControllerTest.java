@@ -28,6 +28,6 @@ public class HomeControllerTest {
     public void nextRound() throws Exception {
         mvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello world !!!"));
+                .andExpect(content().string("Hello world !!!!"));
     }
 }
