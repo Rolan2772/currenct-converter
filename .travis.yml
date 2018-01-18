@@ -7,7 +7,7 @@ addons:
   sonarcloud:
     organization: "rolan2772-github"
     token:
-      secure: "ab0c45e291030aaceb274efbd13262440d7c0335"
+      secure: $SONAR_CLOUD_KEY
 
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
@@ -16,3 +16,9 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
+
+deploy:
+ provider: heroku
+ api-key:
+  secure: $HEROKU_API_KEY
+ app: rolan-currency-converter
