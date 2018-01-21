@@ -1,15 +1,15 @@
 package com.zooplus.sdc.converter.controllers;
 
+import com.zooplus.sdc.converter.controllers.model.ExchangeRateRequest;
 import com.zooplus.sdc.converter.entities.ExchangeRateEntity;
 import com.zooplus.sdc.converter.functions.ExchangeRateMapper;
 import com.zooplus.sdc.converter.services.ExchangeRatesService;
 import com.zooplus.sdc.converter.views.ExchangeRateView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 @RestController
@@ -25,16 +25,5 @@ public class ExchangeRatesController {
     public ExchangeRateView getExchangeRate(@Valid ExchangeRateRequest exchangeRateRequest) {
         ExchangeRateEntity entity = exchangeRatesService.getExchangeRate(exchangeRateRequest);
         return exchangeRateMapper.apply(entity);
-    }
-
-    @ExceptionHandler(value = {ConstraintViolationException.class})
-    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-    public String handleValidationFailure(ConstraintViolationException ex) {
-        StringBuilder messages = new StringBuilder();
-        for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
-            messages.append(violation.getMessage())
-                    .append("\n");
-        }
-        return messages.toString();
     }
 }

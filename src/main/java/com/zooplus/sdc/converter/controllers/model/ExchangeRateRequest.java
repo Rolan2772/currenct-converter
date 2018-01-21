@@ -1,4 +1,4 @@
-package com.zooplus.sdc.converter.controllers;
+package com.zooplus.sdc.converter.controllers.model;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;

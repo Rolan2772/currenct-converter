@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -27,14 +26,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ExchangeRatesController.class)
+@WebMvcTest(controllers = ExchangeRatesController.class, secure = false)
 @ContextConfiguration(classes = ControllersContextTestConfig.class)
 public class ExchangeRatesControllerTest {
 
     @Autowired
     private MockMvc mvc;
-
-    @MockBean
+    @Autowired
     private ExchangeRatesService exchangeRatesService;
 
     @Test
