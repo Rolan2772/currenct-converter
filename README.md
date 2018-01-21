@@ -14,13 +14,15 @@ All bages are clickable and leads to project analysis/build/deployment.
  - https://www.heroku.com/ - as deployment environment
  
 ### App endpoints
- - Login : POST (https://rolan-currency-converter.herokuapp.com/login?username=Rolan&password=test)
- - Logout : GET (https://rolan-currency-converter.herokuapp.com/logout)
- - Documented API: (https://rolan-currency-converter.herokuapp.com/swagger-ui.html)
- - Monitoring endpoints: (https://rolan-currency-converter.herokuapp.com/actuator/health), checkout Spring Boot Actuator Endpoints
+ - Login: POST https://rolan-currency-converter.herokuapp.com/login?username=Rolan&password=test
+ - Logout: GET https://rolan-currency-converter.herokuapp.com/logout
+ - Documented API: https://rolan-currency-converter.herokuapp.com/swagger-ui.html
+ - Monitoring endpoints: https://rolan-currency-converter.herokuapp.com/actuator/health
+ - Available monitoring endpoints: [Spring Boot Actuator Endpoints](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html)
  
 ### User scenarios:
- 
+ - sign up -> get exchange rate -> logout
+ - login -> get history exchange rate -> logout
  
 ### Build and run instructions
  - Build application : mvn clean install
