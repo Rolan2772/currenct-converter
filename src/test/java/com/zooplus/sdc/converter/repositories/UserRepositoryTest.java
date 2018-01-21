@@ -1,6 +1,6 @@
 package com.zooplus.sdc.converter.repositories;
 
-import com.zooplus.sdc.converter.entities.CurrencyEntity;
+import com.zooplus.sdc.converter.entities.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,29 +16,29 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Transactional
-public class CurrencyRepositoryTest {
+public class UserRepositoryTest {
 
     @Autowired
-    private CurrencyRepository currencyRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Test
     public void findByName() {
-        String name = "AUD";
-        CurrencyEntity aud = entityManager.persist(CurrencyEntity.builder()
+        String name = "Ellen";
+        UserEntity user = entityManager.persist(UserEntity.builder()
                 .name(name)
                 .build());
-        entityManager.persist(aud);
+        entityManager.persist(user);
 
-        Optional<CurrencyEntity> persisted = currencyRepository.findByName(name);
+        Optional<UserEntity> persisted = userRepository.findByName(name);
         assertTrue(persisted.isPresent());
         assertEquals(name, persisted.get().getName());
     }
 
     @Test
     public void notFoundByName() {
-        assertFalse(currencyRepository.findByName("EUR").isPresent());
+        assertFalse(userRepository.findByName("Rick").isPresent());
     }
 }
