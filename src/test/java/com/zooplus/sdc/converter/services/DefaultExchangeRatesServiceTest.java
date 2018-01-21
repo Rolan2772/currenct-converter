@@ -42,9 +42,9 @@ public class DefaultExchangeRatesServiceTest {
 
     @Before
     public void before() {
-        given(exchangeRateProvider.getLatestExchangeRate(any(), any()))
+        given(exchangeRateProvider.getLatestExchangeRate(any()))
                 .willReturn(BigDecimal.ONE);
-        given(exchangeRateProvider.getHistoryExchangeRate(any(), any(), any()))
+        given(exchangeRateProvider.getHistoryExchangeRate(any(), any()))
                 .willReturn(BigDecimal.TEN);
         given(currencyService.finaByNameOrCreateNew(BASE_CURRENCY))
                 .willReturn(CurrencyEntity.builder()
