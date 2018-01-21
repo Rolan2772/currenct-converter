@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -24,22 +25,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/signup").permitAll()
+                .antMatchers("/webjars/**", "/swagger-resources/**", "/swagger-ui.html", "/v2/api-docs").permitAll()
+                .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/", "/user/signup").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint())
+                .and()
                 .formLogin()
-                // @TODO: return 401 response when user not found
-                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
                 .loginPage("/login")
+                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
                 .usernameParameter("username").passwordParameter("password")
+                .permitAll()
                 .and()
                 .logout().deleteCookies("SESSION")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .and()
-                .csrf().disable()
-                .httpBasic().disable();
+                .logoutSuccessUrl("/swagger-ui.html")
+                .permitAll();
     }
 
     @Autowired
