@@ -1,11 +1,13 @@
 package com.zooplus.sdc.converter.integration;
 
+import com.zooplus.sdc.converter.integration.model.CurrencyPair;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public interface ExchangeRateProvider {
 
-    BigDecimal getLatestExchangeRate(String baseCurrency, String targetCurrency);
+    BigDecimal getLatestExchangeRate(CurrencyPair currencyPair);
 
-    BigDecimal getHistoryExchangeRate(String baseCurrency, String targetCurrency, LocalDate exchangeRateDate);
+    BigDecimal getHistoryExchangeRate(CurrencyPair currencyPair, LocalDate exchangeRateDate);
 }
