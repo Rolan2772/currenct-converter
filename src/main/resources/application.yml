@@ -1,0 +1,22 @@
+app:
+  historyItemsMax = 10
+
+integration:
+  openExchangeRatesProperties:
+    appId:
+    apiUrl: https://openexchangerates.org/api
+    latestUrl: ${integration.openExchangeRatesProperties.apiUrl}/latest.json?app_id={app_id}&base={base}&symbols={symbols}
+    historicalUrl: ${integration.openExchangeRatesProperties.apiUrl}/historical/{exchangeRateDate}.json?app_id={app_id}&base={base}&symbols={symbols}
+
+spring:
+  jackson:
+    serialization.write_dates_as_timestamps: false
+  jpa:
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate.format_sql: false
+
+logging:
+  level:
+    com.zooplus.sdc.converter: INFO
