@@ -52,7 +52,7 @@ public class UserNameAuthenticationProviderTest {
 
         Authentication auth = provider.authenticate(token);
 
-        assertEquals(auth.getName(), USER_NAME);
+        assertEquals(USER_NAME, auth.getName());
         assertTrue(auth.isAuthenticated());
     }
 
