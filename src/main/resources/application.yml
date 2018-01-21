@@ -17,6 +17,15 @@ spring:
     properties:
       hibernate.format_sql: false
 
+management:
+  contextPath: /actuator
+  security:
+    enabled: false
+
+security:
+  basic:
+    enabled: false
+
 logging:
   level:
     com.zooplus.sdc.converter: INFO
