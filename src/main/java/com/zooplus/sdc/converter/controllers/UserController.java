@@ -5,6 +5,7 @@ import com.zooplus.sdc.converter.services.SignUpService;
 import com.zooplus.sdc.converter.services.UserService;
 import com.zooplus.sdc.converter.views.UserView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +42,9 @@ public class UserController {
 
     private void validateSession() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.isAuthenticated()) {
+        boolean anonymous = auth instanceof AnonymousAuthenticationToken;
+        boolean authenticated = auth != null && auth.isAuthenticated();
+        if (!anonymous && authenticated) {
             throw new IllegalArgumentException("Please logout first before sign up.");
         }
     }
