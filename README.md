@@ -26,5 +26,5 @@ All bages are clickable and leads to project analysis/build/deployment.
  
 ### Build and run instructions
  - Build application : mvn clean install
- - Run Application: java -jar target/currency-converter-0.0.1.jar -Dintegration.openExchangeRatesProperties.appId=<Open Exchange Rates ID>
+ - Run Application: java -jar target/currency-converter-0.0.1.jar -Dintegration.openExchangeRatesProperties.appId=\<Open Exchange Rates ID\>
  
