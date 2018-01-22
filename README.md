@@ -13,6 +13,10 @@ All bages are clickable and leads to project analysis/build/deployment.
  - https://travis-ci.org - as CI/CD tool
  - https://www.heroku.com/ - as deployment environment
  
+### Architecture
+ - Backend - Spring Boot application with REST endpoints
+ - Frontend - Vue.js or Angular JS (not implemented yet)
+ 
 ### App endpoints
  - Login: POST https://rolan-currency-converter.herokuapp.com/login?username=Rolan&password=test
  - Logout: GET https://rolan-currency-converter.herokuapp.com/logout
@@ -27,4 +31,4 @@ All bages are clickable and leads to project analysis/build/deployment.
 ### Build and run instructions
  - Build application : mvn clean install
  - Run Application: java -jar target/currency-converter-0.0.1.jar -Dintegration.openExchangeRatesProperties.appId=\<Open Exchange Rates ID\>
- 
+
