@@ -29,6 +29,9 @@ All bages are clickable and leads to project analysis/build/deployment.
  - login -> get history exchange rate -> logout
  
 ### Build and run instructions
- - Build application : mvn clean install
- - Run Application: java -jar target/currency-converter-0.0.1.jar -Dintegration.openExchangeRatesProperties.appId=\<Open Exchange Rates ID\>
-
+```
+git clone https://github.com/Rolan2772/currency-converter.git currency-converter
+cd currency-converter
+mvn clean install
+java -jar target/currency-converter-0.0.1.jar -Dintegration.openExchangeRatesProperties.appId=\<Open Exchange Rates ID\>
+```
