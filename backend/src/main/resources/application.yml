@@ -29,3 +29,7 @@ security:
 logging:
   level:
     com.zooplus.sdc.converter: INFO
+    org.springframework.web: DEBUG
+
+server:
+  port: 8081
