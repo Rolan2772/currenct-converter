@@ -7,8 +7,8 @@
     <artifactId>currency-converter</artifactId>
     <version>0.0.2-SNAPSHOT</version>
     <modules>
-        <module>backend</module>
         <module>frontend</module>
+        <module>backend</module>
     </modules>
     <packaging>pom</packaging>
 
