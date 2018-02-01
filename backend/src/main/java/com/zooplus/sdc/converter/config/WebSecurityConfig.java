@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/static/**", "/swagger-resources/**", "/swagger-ui.html", "/v2/api-docs").permitAll()
                 .antMatchers("/actuator/**").permitAll()
-                .antMatchers("/", "/user/signup").permitAll()
+                .antMatchers("/", "/users/signup").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint())
