@@ -57,7 +57,7 @@ public class UserControllerTest {
         given(signUpService.signUp(request))
                 .willReturn(auth);
 
-        mvc.perform(post("/user/signup")
+        mvc.perform(post("/users/signup")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"userName\":\"" + request.getUserName() + "\"}"))
                 .andExpect(status().isOk())
@@ -75,7 +75,7 @@ public class UserControllerTest {
 
         expectedException.expect(NestedServletException.class);
         expectedException.expectMessage("User already exists.");
-        mvc.perform(post("/user/signup")
+        mvc.perform(post("/users/signup")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"userName\":\"" + request.getUserName() + "\"}"));
 

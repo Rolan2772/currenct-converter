@@ -44,6 +44,7 @@ public class UserAuthenticationTest {
     @Test
     public void login() throws Exception {
         SecurityMockMvcRequestBuilders.FormLoginRequestBuilder login = formLogin()
+                .userParameter("userName")
                 .user(USER_NAME)
                 .password("");
 

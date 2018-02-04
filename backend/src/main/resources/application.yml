@@ -30,3 +30,9 @@ logging:
   level:
     com.zooplus.sdc.converter: INFO
     org.springframework.web: DEBUG
+
+---
+spring:
+    profiles: dev
+server:
+    port: 8081
