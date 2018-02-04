@@ -1,5 +1,7 @@
 package com.zooplus.sdc.converter.config;
 
+import com.zooplus.sdc.converter.security.CorsAuthenticationSuccessHandler;
+import com.zooplus.sdc.converter.security.CustomAuthenticationSuccessHandler;
 import com.zooplus.sdc.converter.security.UserNameAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -20,6 +23,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Bean
     public AuthenticationProvider userNameAuthProvider() {
@@ -41,6 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+                .successHandler(authenticationSuccessHandler)
                 .usernameParameter("userName").passwordParameter("password")
                 .permitAll()
                 .and()
@@ -55,15 +62,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(userNameAuthProvider());
     }
 
-    @Profile("dev")
+    @Profile("!dev")
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
-
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
-            }
-        };
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new CustomAuthenticationSuccessHandler();
     }
+
+
+    @Profile("dev")
+    @Configuration
+    public class DevSecurityConfiguration {
+
+        @Bean
+        public AuthenticationSuccessHandler authenticationSuccessHandler() {
+            return new CorsAuthenticationSuccessHandler();
+        }
+
+        @Bean
+        public WebMvcConfigurer corsConfigurer() {
+
+            return new WebMvcConfigurerAdapter() {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/**")
+                            .allowedOrigins("*");
+                }
+            };
+        }
+    }
+
 }
