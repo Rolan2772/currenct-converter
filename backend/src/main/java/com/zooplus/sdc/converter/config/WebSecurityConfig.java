@@ -1,6 +1,5 @@
 package com.zooplus.sdc.converter.config;
 
-import com.zooplus.sdc.converter.security.CorsAuthenticationSuccessHandler;
 import com.zooplus.sdc.converter.security.CustomAuthenticationSuccessHandler;
 import com.zooplus.sdc.converter.security.UserNameAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
@@ -19,6 +19,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -75,6 +80,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Bean
         public AuthenticationSuccessHandler authenticationSuccessHandler() {
+            class CorsAuthenticationSuccessHandler extends CustomAuthenticationSuccessHandler {
+
+                @Override
+                public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+                    super.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);
+                    httpServletResponse.setHeader("Access-Control-Allow-Credentials", Boolean.TRUE.toString());
+                    httpServletResponse.setHeader("Access-Control-Allow-Methods", "GET,HEAD,POST");
+                    httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+                }
+            }
             return new CorsAuthenticationSuccessHandler();
         }
 

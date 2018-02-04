@@ -8,21 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UsersController {
 
     @Autowired
     private SignUpService signUpService;
     @Autowired
     private UserService userService;
+
+    @GetMapping("/current")
+    public UserView getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return new UserView(auth.getPrincipal().toString());
+    }
 
     @PostMapping("/signup")
     public UserView signUp(@RequestBody @Valid SignUpRequest signUpRequest) {

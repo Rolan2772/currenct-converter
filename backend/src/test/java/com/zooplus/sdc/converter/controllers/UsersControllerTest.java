@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,14 +26,15 @@ import java.util.Optional;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = UserController.class, secure = false)
+@WebMvcTest(controllers = UsersController.class, secure = false)
 @ContextConfiguration(classes = ControllersContextTestConfig.class)
-public class UserControllerTest {
+public class UsersControllerTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
@@ -79,5 +81,15 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"userName\":\"" + request.getUserName() + "\"}"));
 
+    }
+
+    @Test
+    public void getUser() throws Exception {
+        Authentication auth = new UsernamePasswordAuthenticationToken("Alex", "secret");
+        SecurityContextHolder.getContext().setAuthentication(auth);
+
+        mvc.perform(get("/users/current"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("Alex")));
     }
 }
