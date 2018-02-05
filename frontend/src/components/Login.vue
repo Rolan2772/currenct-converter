@@ -3,31 +3,34 @@
     <b-container>
       <b-form>
         <b-row>
-          <b-col></b-col>
           <b-col>
-            <b-form-group id="loginGroup" label="Login" label-for="login">
-              <b-form-input id="login"
-                            type="text"
-                            v-model.trim="form.login">
-              </b-form-input>
-            </b-form-group>
-            <b-form-group id="passwordGroup" label="Password" label-for="password">
-              <b-form-input id="password"
-                            type="password"
-                            v-model.trim="form.password">
-              </b-form-input>
-            </b-form-group>
+            <h2>Login</h2>
           </b-col>
-          <b-col></b-col>
         </b-row>
-        <b-row>
-          <b-col></b-col>
-          <b-col>
-            <b-btn variant="info" @click="login()">Login</b-btn>
-            <b-btn variant="info" @click="$router.push('/signup')">Sign Up</b-btn>
-          </b-col>
-          <b-col></b-col>
-        </b-row>
+          <b-row>
+            <b-col>
+              <b-form-group label="Email" label-for="l-email-input">
+                <b-form-input id="l-email-input"
+                              type="text"
+                              placeholder="email"
+                              v-model.trim="form.email">
+                </b-form-input>
+              </b-form-group>
+              <b-form-group label="Password" label-for="l-password">
+                <b-form-input id="l-password"
+                              type="password"
+                              placeholder="password"
+                              v-model.trim="form.password">
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <b-btn variant="info" @click="login()">Login</b-btn>
+              <b-btn variant="info" router-link to="/signup">Sign Up</b-btn>
+            </b-col>
+          </b-row>
       </b-form>
     </b-container>
     <b-container align-h="center">
@@ -44,7 +47,7 @@
     data() {
       return {
         form: {
-          login: '',
+          email: '',
           password: ''
         },
         errorMessage: ''
@@ -54,7 +57,7 @@
     methods: {
       login() {
         auth.login({
-            login: this.form.login
+          login: this.form.login
         }).then(response => {
           this.$router.push('/converter');
         }).catch(e => {

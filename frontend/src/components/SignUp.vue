@@ -3,35 +3,40 @@
     <b-container>
       <b-form>
         <b-row>
-          <b-col></b-col>
           <b-col>
-            <b-form-group id="signUpGroup" label="Login" label-for="login">
-              <b-form-input id="login"
-                            type="text"
-                            v-model.trim="form.login">
-              </b-form-input>
-            </b-form-group>
-            <b-form-group id="passwordGroup" label="Password" label-for="password">
-              <b-form-input id="password"
-                            type="password"
-                            v-model.trim="form.password">
-              </b-form-input>
-            </b-form-group>
-            <b-form-group id="passwordGroup" label="Repeat Password" label-for="password">
-              <b-form-input id="passwordRepeat"
-                            type="password"
-                            v-model.trim="form.password">
-              </b-form-input>
-            </b-form-group>
+            <h2>Sign Up</h2>
           </b-col>
-          <b-col></b-col>
         </b-row>
         <b-row>
-          <b-col></b-col>
+          <b-col>
+            <b-form-group label="Email" label-for="s-email-input">
+              <b-form-input id="s-email-input"
+                            type="text"
+                            placeholder="email"
+                            v-model.trim="form.email">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group label="Password (8 or more characters required)" label-for="s-password">
+              <b-form-input id="s-password"
+                            type="password"
+                            placeholder="password"
+                            v-model.trim="form.password">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group label="Confirm Password" label-for="s-confirm-pass">
+              <b-form-input id="s-confirm-pass"
+                            type="password"
+                            placeholder="confirm password"
+                            v-model.trim="form.confirmPassword">
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row>
           <b-col>
             <b-btn variant="info" @click="signUp()">Sign Up</b-btn>
+            <b-btn variant="info" href="/#/login">Return to Login</b-btn>
           </b-col>
-          <b-col></b-col>
         </b-row>
       </b-form>
     </b-container>
@@ -49,8 +54,9 @@
     data() {
       return {
         form: {
-          login: '',
-          password: ''
+          email: '',
+          password: '',
+          confirmPassword: ''
         },
         errorMessage: 'test'
       }

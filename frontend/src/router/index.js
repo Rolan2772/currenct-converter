@@ -20,10 +20,6 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: SignUp
-    }, {
-      path: '/converter',
-      name: 'converter',
-      component: Converter
     }
   ]
 })
