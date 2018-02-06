@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  import {auth} from './httpResources'
+  import {auth} from '../api/httpResources'
 
   export default {
     name: 'SignUp',
@@ -64,10 +64,11 @@
     methods: {
       signUp() {
         auth.signUp({
-          userName: this.form.login
+          userName: this.form.email
         }).then(response => {
           this.errorMessage = '';
-          this.$router.push('/converter');
+          this.$store.commit('login', {name: this.form.email});
+          this.$router.push('/');
         }).catch(e => {
           this.errorMessage = e.response && e.response.data && e.response.data.message || e.message;
         })

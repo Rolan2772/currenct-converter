@@ -3,10 +3,11 @@ import Router from "vue-router";
 import Login from "@/components/Login";
 import SignUp from "@/components/SignUp";
 import Converter from "@/components/Converter";
+import store from "../store/modules/userStore";
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -23,3 +24,15 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login' || to.path === '/signup') {
+    next()
+  } else if (store.state.user.name) {
+    next()
+  } else {
+    next({path: '/login'})
+  }
+})
+
+export default router;
