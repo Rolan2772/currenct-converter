@@ -2,11 +2,12 @@ app:
   historyItemsMax = 10
 
 integration:
-  openExchangeRatesProperties:
+  # Open exchange rates configuration https://openexchangerates.org
+  oxr:
     appId:
-    apiUrl: https://openexchangerates.org/api
-    latestUrl: ${integration.openExchangeRatesProperties.apiUrl}/latest.json?app_id={app_id}&base={base}&symbols={symbols}
-    historicalUrl: ${integration.openExchangeRatesProperties.apiUrl}/historical/{exchangeRateDate}.json?app_id={app_id}&base={base}&symbols={symbols}
+    api: https://openexchangerates.org/api
+    latestApi: ${integration.oxr.api}/latest.json?app_id={app_id}&base={base}&symbols={symbols}
+    historicalApi: ${integration.oxr.api}/historical/{exchangeRateDate}.json?app_id={app_id}&base={base}&symbols={symbols}
 
 spring:
   jackson:

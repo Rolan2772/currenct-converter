@@ -4,11 +4,10 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
-@ConfigurationProperties("integration.openExchangeRatesProperties")
+@ConfigurationProperties("integration.oxr")
 public class OpenExchangeRateProperties {
 
     private String appId;
-    private String apiUrl;
-    private String latestUrl;
-    private String historicalUrl;
+    private String latestApi;
+    private String historicalApi;
 }

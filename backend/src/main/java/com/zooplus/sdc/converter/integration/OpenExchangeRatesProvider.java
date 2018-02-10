@@ -29,7 +29,7 @@ public class OpenExchangeRatesProvider implements ExchangeRateProvider {
         log.info("Requesting latest {} exchange rate.", currencyPair);
         try {
             Map<String, Object> params = createRequestParams(currencyPair);
-            ResponseEntity<ExchangeRateResponse> response = restTemplate.getForEntity(openExchangeRateProperties.getLatestUrl(), ExchangeRateResponse.class, params);
+            ResponseEntity<ExchangeRateResponse> response = restTemplate.getForEntity(openExchangeRateProperties.getLatestApi(), ExchangeRateResponse.class, params);
             String emptyRateMessage = currencyPair + " exchange rate is not found.";
             return getExchangeRate(response.getBody(), currencyPair.getTargetCurrency(), emptyRateMessage);
         } catch (HttpStatusCodeException exception) {
@@ -64,7 +64,7 @@ public class OpenExchangeRatesProvider implements ExchangeRateProvider {
         try {
             Map<String, Object> params = createRequestParams(currencyPair);
             params.put("exchangeRateDate", exchangeRateDate);
-            ResponseEntity<ExchangeRateResponse> response = restTemplate.getForEntity(openExchangeRateProperties.getHistoricalUrl(), ExchangeRateResponse.class, params);
+            ResponseEntity<ExchangeRateResponse> response = restTemplate.getForEntity(openExchangeRateProperties.getHistoricalApi(), ExchangeRateResponse.class, params);
             String emptyRateMessage = currencyPair + " exchange rate on " + exchangeRateDate + " is not found.";
             return getExchangeRate(response.getBody(), currencyPair.getTargetCurrency(), emptyRateMessage);
         } catch (HttpStatusCodeException exception) {

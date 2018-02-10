@@ -33,5 +33,5 @@ All bages are clickable and leads to project analysis/build/deployment.
 git clone https://github.com/Rolan2772/currency-converter.git currency-converter
 cd currency-converter
 mvn clean install
-java -jar target/currency-converter-0.0.1.jar -Dintegration.openExchangeRatesProperties.appId=\<Open Exchange Rates ID\>
+java -jar target/currency-converter-0.0.1.jar -Dintegration.oxr.appId=[App Id](https://docs.openexchangerates.org/docs/authentication)
 ```
