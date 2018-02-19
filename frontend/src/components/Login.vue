@@ -1,36 +1,34 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
-    <b-container>
+    <b-container fluid>
       <b-form>
-        <b-row>
-          <b-col>
+        <b-row align-h="center">
+          <b-col sm="12" md="6" lg="4">
             <h2>Login</h2>
           </b-col>
         </b-row>
-          <b-row>
-            <b-col>
-              <b-form-group label="Email" label-for="l-email-input">
-                <b-form-input id="l-email-input"
-                              type="text"
-                              placeholder="email"
-                              v-model.trim="form.email">
-                </b-form-input>
-              </b-form-group>
-              <b-form-group label="Password" label-for="l-password">
-                <b-form-input id="l-password"
-                              type="password"
-                              placeholder="password"
-                              v-model.trim="form.password">
-                </b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col>
-              <b-btn variant="info" @click="login()">Login</b-btn>
-              <b-btn variant="info" router-link to="/signup">Sign Up</b-btn>
-            </b-col>
-          </b-row>
+        <b-row align-h="center">
+          <b-col sm="12" md="6" lg="4">
+            <b-form-group label="Email" label-for="l-email-input">
+              <b-form-input id="l-email-input"
+                            type="text"
+                            v-model.trim="form.email">
+              </b-form-input>
+            </b-form-group>
+            <b-form-group label="Password" label-for="l-password">
+              <b-form-input id="l-password"
+                            type="password"
+                            v-model.trim="form.password">
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+        <b-row align-h="center">
+          <b-col sm="12" md="6" lg="4">
+            <b-btn variant="info" @click="login()">Login</b-btn>
+            <b-btn variant="info" router-link to="/signup">Sign Up</b-btn>
+          </b-col>
+        </b-row>
       </b-form>
     </b-container>
     <b-container align-h="center">

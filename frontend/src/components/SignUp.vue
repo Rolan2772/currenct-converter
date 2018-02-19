@@ -2,38 +2,35 @@
   <div>
     <b-container>
       <b-form>
-        <b-row>
-          <b-col>
+        <b-row align-h="center">
+          <b-col sm="12" md="6" lg="4">
             <h2>Sign Up</h2>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col>
+        <b-row align-h="center">
+          <b-col sm="12" md="6" lg="4">
             <b-form-group label="Email" label-for="s-email-input">
               <b-form-input id="s-email-input"
                             type="text"
-                            placeholder="email"
                             v-model.trim="form.email">
               </b-form-input>
             </b-form-group>
             <b-form-group label="Password (8 or more characters required)" label-for="s-password">
               <b-form-input id="s-password"
                             type="password"
-                            placeholder="password"
                             v-model.trim="form.password">
               </b-form-input>
             </b-form-group>
             <b-form-group label="Confirm Password" label-for="s-confirm-pass">
               <b-form-input id="s-confirm-pass"
                             type="password"
-                            placeholder="confirm password"
                             v-model.trim="form.confirmPassword">
               </b-form-input>
             </b-form-group>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col>
+        <b-row align-h="center">
+          <b-col sm="12" md="6" lg="4">
             <b-btn variant="info" @click="signUp()">Sign Up</b-btn>
             <b-btn variant="info" href="/#/login">Return to Login</b-btn>
           </b-col>
