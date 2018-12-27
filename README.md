@@ -2,7 +2,7 @@
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=com.zooplus.sdc:currency-converter&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.zooplus.sdc:currency-converter)
 [![Code Covarage](https://sonarcloud.io/api/project_badges/measure?project=com.zooplus.sdc:currency-converter&metric=coverage)](https://sonarcloud.io/dashboard?id=com.zooplus.sdc:currency-converter)
 [![Build Status](https://travis-ci.org/Rolan2772/currency-converter.svg?branch=master)](https://travis-ci.org/Rolan2772/currency-converter)
-[![Heroku](https://heroku-badge.herokuapp.com/?app=rolan-currency-converter&root=/swagger-ui.html)](https://rolan-currency-converter.herokuapp.com/swagger-ui.html)
+[![Heroku](https://heroku-badge.herokuapp.com/?app=rolan-currency-converter&root=/swagger-ui.html&style=flat&svg=1)](https://rolan-currency-converter.herokuapp.com/swagger-ui.html)
 
 # currency-converter
 Protected currency converter application using a public currency converter API.
