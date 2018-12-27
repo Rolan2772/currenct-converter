@@ -1,5 +1,6 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/Rolan2772/currency-converter?branch=master)](https://bettercodehub.com/)
-[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=com.zooplus.sdc%3Acurrency-converter)](https://sonarcloud.io/dashboard?id=com.zooplus.sdc%3Acurrency-converter)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=com.zooplus.sdc:currency-converter&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.zooplus.sdc:currency-converter)
+[![Code Covarage](https://sonarcloud.io/api/project_badges/measure?project=com.zooplus.sdc:currency-converter&metric=coverage)](https://sonarcloud.io/dashboard?id=com.zooplus.sdc:currency-converter)
 [![Build Status](https://travis-ci.org/Rolan2772/currency-converter.svg?branch=master)](https://travis-ci.org/Rolan2772/currency-converter)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=rolan-currency-converter&root=/swagger-ui.html)](https://rolan-currency-converter.herokuapp.com/swagger-ui.html)
 
